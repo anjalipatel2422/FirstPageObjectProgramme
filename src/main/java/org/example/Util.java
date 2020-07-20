@@ -1,15 +1,17 @@
 package org.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Util extends BasePage {
     public static void waituntilElementisclickble(By by, int time) { //reusable method to wait until element is clickble
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }//reusable method
 
@@ -18,9 +20,15 @@ public class Util extends BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public static void clickonElement(By by) { driver.findElement(by).click(); }//reusable method from element is clickble
+    public static void clickonElement(By by) {
+        driver.findElement(by).click();
+    }//reusable method from element is clickble
 
     public static String getText1(By by) {  //reusable method to get text from element
+        return driver.findElement(by).getText();
+    }
+
+    public static String getText2(By by) {  //reusable method to get text from element
         return driver.findElement(by).getText();
     }
 
@@ -43,9 +51,10 @@ public class Util extends BasePage {
         org.openqa.selenium.support.ui.Select select = new Select((driver.findElement(by)));
         select.selectByValue(value);
     }
-    public static void JavaScriptclickonElement(By by){ //reusable method for click on element in case of other clickble method not work
-        WebElement element=driver.findElement(by);
-        JavascriptExecutor javascript=(JavascriptExecutor)driver;
+
+    public static void JavaScriptclickonElement(By by) { //reusable method for click on element in case of other clickble method not work
+        WebElement element = driver.findElement(by);
+        JavascriptExecutor javascript = (JavascriptExecutor) driver;
         javascript.executeScript("arguments[0].click();", element);
 
     }
@@ -53,5 +62,14 @@ public class Util extends BasePage {
     public static long timestamp() {//reusable method to get timestamp
         return (System.currentTimeMillis());
 
+    } public void takeScreenShot(String screenShotName) {
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(srcFile, new File("src\\ScreenShots\\" +screenShotName+" .jpeg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }}
+
+
+
     }
-}

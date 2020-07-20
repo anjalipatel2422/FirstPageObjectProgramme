@@ -19,8 +19,9 @@ public class RegisterPage extends Util{
 
 
     public void UserEntersRegistrationDetails(){
-        waituntilElementisclickble(_firstname,30);
+        waituntilElementisclickble(_firstname,50);
         typeText(_firstname,"test");
+        waituntilElementisclickble(_lastname,30);
         typeText(_lastname,"patel");
         selefromdromdropdownbyvalue(_Dateofbirthday,"8");
         selectfromdropdownbyvisibletext(_Dateofbirthmonth,"April");

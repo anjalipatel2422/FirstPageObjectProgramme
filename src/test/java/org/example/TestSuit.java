@@ -1,6 +1,11 @@
 package org.example;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class TestSuit extends BaseTest
 {
@@ -18,12 +23,58 @@ public class TestSuit extends BaseTest
     CellPhonesPage cellPhonesPage=new CellPhonesPage();//create object of cellphonespage class
     CartSuccessPage cartSuccessPage=new CartSuccessPage();//create object of cartsuccesspage class
 
+    NewOnlineStorePage newOnlineStorePage=new NewOnlineStorePage();//Object of newonlinestorepage class
+    FaceBookPage faceBookPage=new FaceBookPage();//object of facebook class
 
-@Test
+    FrameExample frameExample=new FrameExample();//object of frame example class
+    @Test
+    public void VerifyAlertPractice(){
+        //click on searchbutton
+        homePage.clickOnSearch();
+        //verify alertpop window
+        homePage.AlertpopwindowTextverify();
+    }
+    @Test
+    public void VerifyComment(){
+        //click on newlinestoreisopen button
+        homePage.clickonNewLineStoreIsOpen();
+        //verify user is in store page
+        newOnlineStorePage.VerifyUserInNewOnlineStorePage();
+        //verify user able to enter detail successfully
+        newOnlineStorePage.VerifyUserEnterAllDetailsOfLeaveYourComment();
+        //click on new comment button
+        newOnlineStorePage.ClcikOnNewCommentButton();
+        //verify user see comments
+        newOnlineStorePage.verifyuserSeeComments();
+        //verify user see successfully message
+        newOnlineStorePage.VerifyuserSeeSuccessfullyMessage();
+    }
+    @Test
+    public void VerifyFaceBookDetails(){
+        //click on FaceBook
+        homePage.clickonFaceBook();
+        //verify facebook popup window
+        faceBookPage.VerifyFacebookPopUpWindow();
+    }
+    @Test
+    public void VerfyUserSelectCurrency(){
+        // verify customer select currency
+        homePage.VerifyCustomerSelectCurrency();
+    }
+    @Test
+    public void IframePractice(){
+        driver.get("https://chercher.tech/practice/frames-example-selenium-webdriver");//overriding the url
+        frameExample.VerifyUserIsonFrameExample();//verify frame page
+        frameExample.VerifyUserEnterAllDetails();//verify user enter topic
+
+
+
+
+
+    }
+    @Test
     public void VerifyUserShouldAbleToRegisterSuccessfully(){
-
-
-    //click on register button
+        //click on register button
     homePage.clickOnRegisterButton();
     //user enter registeration details
     registerPage.UserEntersRegistrationDetails();
@@ -36,11 +87,7 @@ public class TestSuit extends BaseTest
     public void registerUserShouldBeAbleToReferAProductToaFriendSuccesfully(){
     //click on register button
     homePage.clickOnRegisterButton();
-    //verify user is on register page
-   // registerPage.VerifyUserisOnRegisterPage();
-    //apply explicitwait
-    //registerPage.WaitUntilelementtobeclickble();
-    //user enter registeration details
+    //user enter registration details
     registerPage.UserEntersRegistrationDetails();
     //user click son register submit button
     registerPage.userclickonregistersubmitbutton();
