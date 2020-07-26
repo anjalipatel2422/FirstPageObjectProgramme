@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class BrowserManager extends Util {
     public  void setUpBrowser() {
         //setting up chromedriver path
-        System.setProperty("webdriver.chrome.driver", "src\\test\\BrowserDrivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\BrowserDrivers\\chromedriver.exe");
 
         //creating chromdriver object to open google chrome browser
         driver = new ChromeDriver();

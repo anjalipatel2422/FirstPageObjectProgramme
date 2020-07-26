@@ -1,7 +1,10 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class NewOnlineStorePage extends Util{
 
@@ -16,11 +19,11 @@ public class NewOnlineStorePage extends Util{
     String _ExpectedComments2="a1b2c3";
     private  By _NewsCommentsSuccesMessage=By.xpath("//div[text()=\"News comment is successfully added.\"]");//path of success message
     String _ExpectedMessage="News comment is successfully added.";
-    public void verifyuserSeeComments(){
-        //verify actual comment with expected
-        Assert.assertEquals(getText1(_CommentsResult),_ExpectedComments);
-        Assert.assertEquals(getText1(_CommentResult1),_ExpectedComments2);
-    }
+//    public void verifyuserSeeComments(){
+//        //verify actual comment with expected
+//        Assert.assertEquals(getText1(_CommentsResult),_ExpectedComments);
+//        Assert.assertEquals(getText1(_CommentResult1),_ExpectedComments2);
+//    }
     public void VerifyUserInNewOnlineStorePage(){
         //verify actual comment with expected
         Assert.assertEquals(getText1(_LeaveYourComment),_ExpectedText);
@@ -38,5 +41,9 @@ public class NewOnlineStorePage extends Util{
     public void ClcikOnNewCommentButton(){
         //click on newcommentbutton
         clickonElement(_NEWCOMMENTBUTTON);
+        List<WebElement> commentList = driver.findElements(By.xpath("//strong[@class=\"comment-text\"]"));
+        String lastItem = commentList.get(commentList.size()-1).getText();
+        Assert.assertEquals(lastItem,"Anjli");
     }
-}
+    }
+

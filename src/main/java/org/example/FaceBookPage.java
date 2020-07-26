@@ -44,7 +44,7 @@ public class FaceBookPage extends Util
                 System.out.println(colour);
 
                 //verify colour value
-                Assert.assertEquals(ActualColourValue,ExpectedcolorValue);
+                Assert.assertEquals(colour,ExpectedcolorValue);
 
                 // Closing the Child Window.
                 driver.close();

@@ -45,7 +45,7 @@ public class TestSuit extends BaseTest
         //click on new comment button
         newOnlineStorePage.ClcikOnNewCommentButton();
         //verify user see comments
-        newOnlineStorePage.verifyuserSeeComments();
+        //newOnlineStorePage.verifyuserSeeComments();
         //verify user see successfully message
         newOnlineStorePage.VerifyuserSeeSuccessfullyMessage();
     }
@@ -59,7 +59,7 @@ public class TestSuit extends BaseTest
     @Test
     public void VerfyUserSelectCurrency(){
         // verify customer select currency
-        homePage.VerifyCustomerSelectCurrency();
+        homePage.VerifyCustomerSelectCurrency("Euro");
     }
     @Test
     public void IframePractice(){
@@ -74,6 +74,8 @@ public class TestSuit extends BaseTest
     }
     @Test
     public void VerifyUserShouldAbleToRegisterSuccessfully(){
+        //click on nocommerce symbol
+        homePage.clickonnopcommertext();
         //click on register button
     homePage.clickOnRegisterButton();
     //user enter registeration details

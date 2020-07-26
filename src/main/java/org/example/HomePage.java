@@ -5,11 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.Currency;
 import java.util.List;
 
 public class HomePage extends Util{
+    private By _NopcommerceSymbol=By.xpath("//img[@alt=\"nopCommerce demo store\"]");
+    private By _registerButton=By.xpath("//a[text()=\"Register\"]");
 
-    private By _registerButton=By.xpath("//a[@class=\"ico-register\"]");//path of register button
     private By _Computer=By.xpath("//ul[@class=\"top-menu notmobile\"]/li[1]/a[1]");//path of computer button
     private By _Electronics=By.xpath("//ul[@class=\"top-menu notmobile\"]/li[2]/a[1]");//path of electronics
     private By _Search=By.xpath("//input[@type=\"submit\"]");//path of search button
@@ -20,7 +22,9 @@ public class HomePage extends Util{
     private By _CurrencySelector=By.xpath("//select[@aria-label=\"Currency selector\"]");//path of currency selector box
     private  By _USD =By.xpath("//select[@aria-label=\"Currency selector\"]/option[1]");//path of us dollar
     private By _Euro=By.xpath("//select[@aria-label=\"Currency selector\"]/option[2]");//path of Euro
-
+    public void clickonnopcommertext(){
+    clickonElement(_NopcommerceSymbol);
+    }
 
     public void clickOnRegisterButton(){//create method
         waituntilElementisclickble(_registerButton,20);//apply explicit wait
@@ -53,23 +57,27 @@ public class HomePage extends Util{
     public void clickonFaceBook(){
         clickonElement(_FaceBook);
     }//clik on facebook
-    public void VerifyCustomerSelectCurrency(){
+    public void VerifyCustomerSelectCurrency(String currency){
         selectfromdropdownbyvisibletext(_CurrencySelector,"Euro");//selecting currency
-        //creating variable and storing path
-        List<WebElement> productlist = driver.findElements(By.xpath("//div[contains(@class,\"product\")]/div[2]/div/div/div[2]/h2/a"));//create variable store the xpath
+        selectfromdropdownbyvisibletext(_CurrencySelector,"US Dollar");
+        //creating list to store the product title
+        //List<WebElement> productlist = driver.findElements(By.xpath("//div[contains(@class,\"product\")]/div[2]/div/div/div[2]/h2/a"));//create variable store the xpath
        //pring statement
-        System.out.println(" product " +productlist.size());
+       //System.out.println(" product " +productlist.size());
+
         //creating variable and storing path
         List<WebElement>PriceOfProduct=driver.findElements(By.xpath("//div[@class=\"item-grid\"]//div[@class=\"prices\"]"));
         //compare actual with expected
-        Assert.assertEquals(productlist.size(),PriceOfProduct.size());
+        //Assert.assertEquals(productlist.size(),PriceOfProduct.size());
        //apply for each loop
-        for (WebElement Currency:PriceOfProduct
-        ) {
-            System.out.println(Currency.getText());
-        }
-        }
+        for (WebElement Currency:PriceOfProduct) {
 
+            if (currency.equals("Euro")) {
+                Assert.assertTrue(Currency.getText().contains("€"), "Currency of the price does not match expected symbol");
+            } else if (currency.equals("US Dollar")){
+                Assert.assertTrue(Currency.getText().contains("$"), "Currency of the price does not match expected symbol");
 
-    }
+            }
+        }
+    }}
 

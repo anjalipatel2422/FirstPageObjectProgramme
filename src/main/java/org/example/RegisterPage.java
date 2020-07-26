@@ -19,9 +19,10 @@ public class RegisterPage extends Util{
 
 
     public void UserEntersRegistrationDetails(){
-        waituntilElementisclickble(_firstname,50);
+
+       waituntilElementisclickble(_firstname,10);
         typeText(_firstname,"test");
-        waituntilElementisclickble(_lastname,30);
+      waituntilGettingText(_lastname,20);
         typeText(_lastname,"patel");
         selefromdromdropdownbyvalue(_Dateofbirthday,"8");
         selectfromdropdownbyvisibletext(_Dateofbirthmonth,"April");
@@ -33,7 +34,7 @@ public class RegisterPage extends Util{
         typeText(_CoinfirmPassword,"A1S2D3F4");}
 
         public void userclickonregistersubmitbutton()
-    {
+    { waituntilElementisclickble(_registerationbutton,20);
         clickonElement(_registerationbutton);
 
 

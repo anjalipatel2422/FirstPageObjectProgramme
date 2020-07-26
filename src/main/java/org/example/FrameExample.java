@@ -23,6 +23,7 @@ public class FrameExample extends Util {
          driver.switchTo().defaultContent();//switch to main frame
          driver.switchTo().frame("frame2");//switch to second frame
          selectfromdropdownbyvisibletext(_SelectAnimal,"Avatar");//select animal type as Avatar
+         driver.switchTo().defaultContent();//switch to main frame
 
 
      }

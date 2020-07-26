@@ -19,6 +19,10 @@ public class Util extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
+    public static void waituntilGettingText(By by,int time){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(by,""));
+    }
 
     public static void clickonElement(By by) {
         driver.findElement(by).click();
